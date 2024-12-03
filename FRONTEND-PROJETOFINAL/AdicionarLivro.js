@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
-import { postRequest } from './api/Api';
+import { postBook} from './api/Api';
 
 export default function AdicionarLivro() {
   const [nome, setNome] = useState('');
@@ -21,7 +21,7 @@ export default function AdicionarLivro() {
     };
 
     try {
-      await postRequest(livro);
+      await postBook(livro);
       alert('Livro adicionado com sucesso!');
       setNome('');
       setAutor('');

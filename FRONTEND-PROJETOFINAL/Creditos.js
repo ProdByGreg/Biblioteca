@@ -47,19 +47,6 @@ export default function Inicio() {
         </Text>
         <Text style={styles.info}>CREDITOS</Text>
         <Text style={styles.info2}>
-            YURI - SOLUÇÃO DE BUGS.
-            <br></br>
-            ARTHUR - SOLUÇÃO DE BUGS.
-            <br></br>
-            GUSTAVO - SOLUÇÃO DE BUGS.
-            <br></br>
-            LEANDRO - SOLUÇÃO DE BUGS.
-            <br></br>
-            <br></br>
-            BERNARDO - ANALISE DE DADOS.
-            <br></br>
-            <br></br>
-            PROFESSOR: GUSTAVO SPERANDIO
         </Text>
 
       </View>

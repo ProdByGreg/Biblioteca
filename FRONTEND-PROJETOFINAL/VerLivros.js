@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
-import { getRequest } from './api/Api';
+import { getBooks } from './api/Api';
+import { useNavigation } from '@react-navigation/native';
 
 export default function VerLivros() {
+  const navigation = useNavigation();
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await getRequest();
+        const response = await getBooks();
+        console.log(response)
         setBooks(response);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
@@ -56,19 +59,18 @@ export default function VerLivros() {
 
           <ScrollView>
 
-          {books.map((book) => (
-          <View key={book.Id} style={styles.bookItem}>
-                
-            <Text style={styles.bookText}>
-            {book.Id}
-            {book.Titulo}
-            {book.Autor}
-            {book.Ano}
+                {books.map((book, index) => (
+        <View key={book.Id || index} style={styles.bookItem}>
+          <Text style={styles.bookText}>
+            {book.Id} {" "}
+            {book.Titulo} {" "}
+            {book.Autor} {" "}
+            {book.Ano} {" "}
             {book.Emprestado ? 'Emprestado' : 'Disponível'}
-            </Text>
-
-          </View>
+          </Text>
+        </View>
           ))}
+
 
           </ScrollView>
 
