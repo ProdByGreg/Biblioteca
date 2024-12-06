@@ -38,7 +38,7 @@
   {
     "ContainingType": "BookManagerAPI.Controllers.LivrosController",
     "Method": "RemoverLivro",
-    "RelativePath": "api/Livros/{id}/remover-livro",
+    "RelativePath": "api/Livros/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

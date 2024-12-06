@@ -7,8 +7,16 @@
       "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:controllers\\livroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\models\\modellivroemprestado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modellivroemprestado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\models\\modellivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modellivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\models\\modelusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modelusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,14 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\models\\modelusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modelusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\microsoft\\desktop\\projetofinal\\biblioteca\\bookmanagerapi\\models\\modellivroemprestado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modellivroemprestado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,21 +38,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ModelLivro.cs",
               "DocumentMoniker": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelLivro.cs",
               "RelativeDocumentMoniker": "Models\\ModelLivro.cs",
               "ToolTip": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelLivro.cs",
               "RelativeToolTip": "Models\\ModelLivro.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAlwBQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-30T00:31:14.329Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -65,20 +64,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ModelLivroEmprestado.cs",
               "DocumentMoniker": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelLivroEmprestado.cs",
               "RelativeDocumentMoniker": "Models\\ModelLivroEmprestado.cs",
               "ToolTip": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelLivroEmprestado.cs",
               "RelativeToolTip": "Models\\ModelLivroEmprestado.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-05T21:08:16.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "ModelUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelUsuario.cs",
               "RelativeDocumentMoniker": "Models\\ModelUsuario.cs",
@@ -95,16 +94,16 @@
               "Title": "LivrosController.cs",
               "DocumentMoniker": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Controllers\\LivrosController.cs",
               "RelativeDocumentMoniker": "Controllers\\LivrosController.cs",
-              "ToolTip": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Controllers\\LivrosController.cs",
-              "RelativeToolTip": "Controllers\\LivrosController.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAAAIMAAAApAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Controllers\\LivrosController.cs*",
+              "RelativeToolTip": "Controllers\\LivrosController.cs*",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAwwLAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-30T00:31:12.939Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UsuariosController.cs",
               "DocumentMoniker": "C:\\Users\\Microsoft\\Desktop\\projetofinal\\BIBLIOTECA\\BookManagerAPI\\Controllers\\UsuariosController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
@@ -112,8 +111,7 @@
               "RelativeToolTip": "Controllers\\UsuariosController.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAqwCEAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T19:51:12.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T19:51:12.993Z"
             }
           ]
         }

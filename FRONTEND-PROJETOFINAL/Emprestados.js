@@ -1,78 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
-import { getRequest } from './api/Api';
+import { seeBooks } from './api/Api';
+import { useNavigation } from '@react-navigation/native';
+
+
+
+
+
 
 export default function VerLivros() {
+  const navigation = useNavigation();
   const [books, setBooks] = useState([]);
+
+
+
+
+
+
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await getRequest();
+        const response = await seeBooks();
+        console.log(response)
         setBooks(response);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
       }
     };
 
+
+
+
+
     fetchBooks();
   }, []);
 
   return (
 
+
+
+
+
+
+
+
     <View style={styles.body}>
 
       <View style={styles.menuhorizontal}>
 
-      <Button 
-      title="Início" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Inicio')}
-      />
+        <Button
+          title="Início"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Inicio')}
+        />
 
-      <Button 
-      title="Usuarios"
-      color="darkgreen"
-      onPress={() => navigation.navigate('Usuarios')}
-      />
+        <Button
+          title="Usuarios"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Usuarios')}
+        />
 
-      <Button 
-      title="Informação" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Info')}
-      />
+        <Button
+          title="Informação"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Info')}
+        />
 
-      <Button 
-      title="Créditos" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Creditos')}
-      />
-      
+        <Button
+          title="Créditos"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Creditos')}
+        />
+
       </View>
 
-        <View style={styles.menuview}>
+      <View style={styles.menuview}>
 
-          <Text style={styles.title}>Ver Livros</Text>
+        <Text style={styles.title}>Ver Livros</Text>
 
-          <ScrollView>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-          {books.map((book) => (
-          <View key={book.Id} style={styles.bookItem}>
-                
-            <Text style={styles.bookText}>
-            {book.Id}
-            {book.Titulo}
-            {book.Autor}
-            {book.Ano}
-            {book.Emprestado ? 'Emprestado' : 'Disponível'}
-            </Text>
-
-          </View>
+          {books.map((book, index) => (
+            <View key={book.id} style={styles.bookItem}>
+              <Text style={styles.bookText}>
+              {"ID do livro:"}{book.id} {"\n"}
+              {"Titulo do livro:"}  {book.titulo} {"\n"}
+              {"Autor do livro:"} {book.autor} {"\n"}
+              {"Ano do livro:"}  {book.ano} {"\n"}
+              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
+              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
+              {"Emprestado para:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
+              </Text>
+            </View>
           ))}
 
-          </ScrollView>
 
-          <View style={styles.button}>
+        </ScrollView>
+
+        <View style={styles.button}>
           <Button
             title="VOLTAR"
             color="darkgreen"
@@ -80,10 +106,19 @@ export default function VerLivros() {
           />
         </View>
 
-        </View>
+      </View>
     </View>
   );
 }
+
+
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   body: {

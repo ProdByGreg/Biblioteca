@@ -19,7 +19,7 @@ export default function AdicionarLivro() {
 
 
 
-  const handleSalvar = async () => {
+  const Salvar = async () => {
     if (!titulo || !autor || !ano || !quantidade) {
       alert('Por favor, preencha todos os campos!');
       return;
@@ -138,7 +138,7 @@ export default function AdicionarLivro() {
         <Button
           title="Salvar"
           color="darkgreen"
-          onPress={handleSalvar}
+          onPress={Salvar}
         />
 
       </View>

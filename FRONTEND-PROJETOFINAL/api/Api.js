@@ -53,6 +53,62 @@ export const postBook = async (book) => {
 
 
 
+export const putBook = async (livroId, usuarioId) => {
+  const response = await fetch(`${BOOKS_API_URL}/${livroId}/emprestar/${usuarioId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (!response.ok) {
+    throw new Error('Erro ao emprestar livro.');
+  }
+
+  return;
+};
+
+
+
+
+
+
+
+
+
+
+export const putBook2 = async (livroId, usuarioId) => {
+  const response = await fetch(`${BOOKS_API_URL}/${livroId}/devolver/${usuarioId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (!response.ok) {
+    throw new Error('Erro ao emprestar livro.');
+  }
+
+  return;
+};
+
+
+
+
+
+export const seeBooks = async () => {
+  
+  const response = await fetch(BOOKS_API_URL);
+
+  if (!response.ok) 
+    throw new Error
+  ('Erro ao buscar dados dos livros.');
+
+  return await response.json();
+};
+
+
+
+
+
+
+
 
 
 export const deleteBook = async (id) => {
@@ -71,18 +127,6 @@ export const deleteBook = async (id) => {
 
 
 
-export const putBook = async (livroId, usuarioId) => {
-  const response = await fetch(`${BOOKS_API_URL}/${livroId}/emprestar/${usuarioId}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-  });
-
-  if (!response.ok) {
-    throw new Error('Erro ao emprestar livro.');
-  }
-
-  return;
-};
 
 
 

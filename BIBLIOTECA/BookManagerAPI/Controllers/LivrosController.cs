@@ -52,7 +52,8 @@ namespace BookManagerAPI.Controllers
 
 
         [HttpGet]
-        public ActionResult<List<Livro>> VerLivros()
+        public ActionResult<List<Livro>> 
+        VerLivros()
         {
             return Ok(books);
         }
@@ -74,7 +75,8 @@ namespace BookManagerAPI.Controllers
 
 
         [HttpPost]
-        public ActionResult AdicionarLivro(Livro newBook)
+        public ActionResult 
+        AdicionarLivro(Livro newBook)
         {
             if (string.IsNullOrEmpty(newBook.Autor) || 
                 string.IsNullOrEmpty(newBook.Titulo) || 
@@ -123,17 +125,18 @@ namespace BookManagerAPI.Controllers
                 return NotFound("Livro não encontrado.");
             }   
 
-            if (livro.QuantidadeEmprestada >= livro.Quantidade)
+            if (livro.QuantidadeEmprestada > livro.Quantidade)
             {
                 return BadRequest("Todas as unidades do livro já foram emprestadas.");
             }
 
+            livro.Quantidade--;
             livro.UsuariosEmprestados.Add(usuarioId);
             livro.QuantidadeEmprestada++;
+            
 
-            return Ok($"Livro {livro.Titulo} emprestado para o usuário {usuarioId}. Quantidade emprestada: {livro.QuantidadeEmprestada}/{livro.Quantidade}");
+            return Ok($"Livro {livro.Titulo} emprestado para o usuário de ID:{string.Join(", ", usuarioId)}. Quantidade emprestada: {livro.QuantidadeEmprestada}/{livro.Quantidade}");
         }
-
 
 
 
@@ -159,22 +162,24 @@ namespace BookManagerAPI.Controllers
         [HttpPut("{livroId}/devolver/{usuarioId}")]
         public ActionResult DevolverLivro(int livroId, int usuarioId)
         {
-            var livro = books.FirstOrDefault(l => l.Id == livroId);
+            var livro = books.FirstOrDefault(livro => livro.Id == livroId);
 
             if (livro == null)
             {
                 return NotFound("Livro não encontrado.");
             }
 
-            if (!livro.UsuariosEmprestados.Contains(usuarioId))
+            if (livro.QuantidadeEmprestada < livro.Quantidade)
             {
-                return BadRequest("Este usuário não possui um exemplar deste livro emprestado.");
+                return BadRequest("Não há unidades emprestadas");
             }
 
-            livro.QuantidadeEmprestada--;
+            livro.Quantidade++;
             livro.UsuariosEmprestados.Remove(usuarioId);
+            livro.QuantidadeEmprestada--;
 
-            return NoContent();
+
+            return Ok($"Livro {livro.Titulo} emprestado para o usuário de ID:{string.Join(", ", usuarioId)}. Quantidade emprestada: {livro.QuantidadeEmprestada}/{livro.Quantidade}");
         }
 
 
@@ -199,8 +204,7 @@ namespace BookManagerAPI.Controllers
 
 
 
-
-        [HttpGet("emprestados")]
+            [HttpGet("emprestados")]
         public ActionResult<List<Livro>> ObterLivrosEmprestados()
         {
 
@@ -274,13 +278,14 @@ namespace BookManagerAPI.Controllers
 
 
 
-        [HttpDelete("{id}/remover-livro")]
-        public ActionResult RemoverLivro(int id)
+        [HttpDelete("{id}")]
+        public ActionResult 
+        RemoverLivro(int id)
         {
             var livro = books.FirstOrDefault(livro => livro.Id == id);
 
             if (livro == null)
-            {
+            {   
                 return NotFound("Livro não encontrado.");
             }
 
@@ -296,7 +301,7 @@ namespace BookManagerAPI.Controllers
                 books.Remove(livro);
             }
 
-            return NoContent();
+            return Ok(books);
         }
 
 

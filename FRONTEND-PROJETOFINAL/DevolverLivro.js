@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
-import { getRequest, putRequest } from './api/Api';
+import { getBooks, putBook2 } from './api/Api';
+
+
 
 
 
@@ -8,7 +10,9 @@ import { getRequest, putRequest } from './api/Api';
 
 export default function DevolverLivro() {
   const [id, setId] = useState('');
+  const [usuarioId, setUsuarioId] = useState('');
   const [books, setBooks] = useState([]);
+
 
 
 
@@ -18,35 +22,58 @@ export default function DevolverLivro() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await getRequest();
+        const response = await getBooks();
 
-        const borrowedBooks = response.filter(book => book.Emprestado);
+        const borrowedBooks = response.filter(book => !book.Emprestado);
         setBooks(borrowedBooks);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
       }};
 
+
+
     fetchBooks();
   }, []);
 
-  const handleDevolverBook = async () => {
+
+
+
+
+  const Devolver = async () => {
     try {
-      if (!id) {
-        alert('Por favor, insira um ID de livro válido.');
+      if (!id || !usuarioId) {
+        alert('Por favor, insira um ID de livro e de usuário válidos.');
         return;
       }
-      await putRequest(`livros/${id}/devolver`);
+
+      await putBook2(id, usuarioId);
       alert('Livro devolvido com sucesso!');
       setId('');
+      setUsuarioId('');
 
-      const updatedBooks = books.filter(book => book.Id !== parseInt(id));
+
+
+
+
+
+      const updatedBooks = await getBooks();
       setBooks(updatedBooks);
+
     } catch (error) {
       console.error('Erro ao devolver livro:', error);
       alert('Erro ao devolver livro!');
-    }};
+    }
+  };
 
   return (
+
+
+
+
+
+
+
+
     <View style={styles.body}>
 
       <View style={styles.menuhorizontal}>
@@ -77,44 +104,73 @@ export default function DevolverLivro() {
 
       </View>
 
-        <View style={styles.menudevolver}>
+
+
+
+
+      <View style={styles.menudevolver}>
 
         <Text style={styles.title}>DEVOLVER LIVRO</Text>
 
+
+
+
         <ScrollView>
+          {books.length > 0 ? (
+            books.map((book) => (
 
-            {books.length > 0 ? (
-              books.map((book) => (
-                <View key={book.Id} style={styles.bookItem}>
+              <View key={book.id} style={styles.bookItem}>
 
-                <Text style={styles.bookText}>
-                  {book.Titulo}
-                  {book.Autor} 
-                  {book.Ano}
-                </Text>
+              <Text style={styles.bookText}>
+              {"ID do livro:"}{book.id} {"\n"}
+              {"Titulo do livro:"}  {book.titulo} {"\n"}
+              {"Autor do livro:"} {book.autor} {"\n"}
+              {"Ano do livro:"}  {book.ano} {"\n"}
+              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
+              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
+              {"Emprestado para o usuario de ID:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
+              </Text>
 
-                </View>
-              ))) : (
+              </View>
+            ))
+          ) : (
+            <Text style={styles.bookText2}>Não há livros emprestados.</Text>
+          )}
+        </ScrollView>
 
-              <Text style={styles.bookText}>Não há livros emprestados.</Text>
-            )}
 
-          </ScrollView>
 
-          <TextInput
-            style={styles.input}
-            placeholder="ID do Livro"
-            value={id}
-            onChangeText={setId}
-            keyboardType="numeric"
-          />
 
-          <Button title="Devolver Livro" color="darkgreen" onPress={handleDevolverBook} />
 
-        </View>
-      
+
+
+        <TextInput
+          style={styles.input}
+          placeholder="ID do Livro"
+          value={id}
+          onChangeText={setId}
+          keyboardType="numeric"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="ID do Usuário"
+          value={usuarioId}
+          onChangeText={setUsuarioId}
+          keyboardType="numeric"
+        />
+        <Button title="Emprestar Livro" color="darkgreen" onPress={Devolver} />
+      </View>
     </View>
-  );}
+  );
+}
+
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -143,6 +199,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   bookText: {
+    fontSize: 16,
+    color: 'black',
+  },
+  bookText2: {
     fontSize: 16,
     color: 'white',
   },

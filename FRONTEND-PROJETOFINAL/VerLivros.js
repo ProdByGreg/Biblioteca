@@ -90,7 +90,7 @@ export default function VerLivros() {
               {"Ano do livro:"}  {book.ano} {"\n"}
               {"Quantidade disponível:"}  {book.quantidade} {"\n"}
               {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para:"}  {book.usuariosEmprestados} {"\n"}
+              {"Emprestado para:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
               </Text>
             </View>
           ))}

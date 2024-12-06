@@ -23,12 +23,12 @@ export default function EmprestarLivro() {
     const fetchBooks = async () => {
       try {
         const response = await getBooks();
+
         const availableBooks = response.filter(book => !book.Emprestado);
         setBooks(availableBooks);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
-      }
-    };
+      }};
 
 
 
@@ -105,6 +105,7 @@ export default function EmprestarLivro() {
 
 
 
+
       <View style={styles.menuemprestar}>
 
         <Text style={styles.title}>EMPRESTAR NOVO LIVRO</Text>
@@ -125,15 +126,18 @@ export default function EmprestarLivro() {
               {"Ano do livro:"}  {book.ano} {"\n"}
               {"Quantidade disponível:"}  {book.quantidade} {"\n"}
               {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para:"}  {book.usuariosEmprestados} {"\n"}
+              {"Emprestado para o usuario de ID:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
               </Text>
 
               </View>
             ))
           ) : (
-            <Text style={styles.bookText}>Não há livros disponíveis.</Text>
+            <Text style={styles.bookText2}>Não há livros disponíveis.</Text>
           )}
         </ScrollView>
+
+
+
 
 
 
@@ -157,6 +161,12 @@ export default function EmprestarLivro() {
     </View>
   );
 }
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -187,6 +197,10 @@ const styles = StyleSheet.create({
   bookText: {
     fontSize: 16,
     color: 'black',
+  },
+  bookText2: {
+    fontSize: 16,
+    color: 'white',
   },
   input: {
     height: 40,

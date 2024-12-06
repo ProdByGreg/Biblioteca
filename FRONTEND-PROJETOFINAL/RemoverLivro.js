@@ -127,14 +127,14 @@ export default function RemoverLivros() {
               {"Ano do livro:"}  {book.ano} {"\n"}
               {"Quantidade disponível:"}  {book.quantidade} {"\n"}
               {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para:"}  {book.usuariosEmprestados} {"\n"}
+              {"Emprestado para:"} {book.usuariosEmprestados.join(", ")} {"\n"}
               </Text>
 
               </View>
 
               ))) : (
                 
-              <Text style={styles.bookText}>Não há livros para exibir.</Text>
+              <Text style={styles.bookText2}>Não há livros para exibir.</Text>
             )}
           </ScrollView>
 
@@ -186,6 +186,10 @@ const styles = StyleSheet.create({
   bookText: {
     fontSize: 16,
     color: 'black',
+  },
+  bookText2: {
+    fontSize: 16,
+    color: 'white',
   },
   input: {
     height: 40,
