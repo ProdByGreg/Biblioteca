@@ -8,9 +8,9 @@ import { getUsers, deleteUser } from './api/Api';
 
 
 
-export default function RemoverLivros() {
+export default function RemoverUsuarios() {
   const [id, setId] = useState('');
-  const [users, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
 
 
 
@@ -23,9 +23,9 @@ export default function RemoverLivros() {
     const fetchUsers = async () => {
       try {
         const response = await getUsers();
-        setUser(response);
+        setUsers(response);
       } catch (error) {
-        console.error('Erro ao buscar livros:', error);
+        console.error('Erro ao buscar usuários:', error);
       }
     };
 
@@ -40,7 +40,7 @@ export default function RemoverLivros() {
 
 
 
-  const Remove = async () => {
+  const RemoverUsuario = async () => {
     try {
       if (!id) {
         alert('Por favor, insira um ID de usuario válido.');
@@ -53,7 +53,7 @@ export default function RemoverLivros() {
   
 
       const updateUsers = await getUsers();
-      setBooks(updateUsers);
+      setUsers(updateUsers);
   
     } catch (error) {
       console.error('Erro ao remover usuario:', error);
@@ -149,7 +149,29 @@ export default function RemoverLivros() {
 
 
 
-          <Button title="Remover Usuario" color="red" onPress={Remove} />
+
+
+          <View style={styles.buttonGroup}>
+
+          <Button 
+          title="Remover usuário" 
+          color="red" 
+          onPress={RemoverUsuario} 
+          />
+
+          <Button
+          title="Voltar"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Usuarios')}
+          />
+
+          </View>
+
+
+
+
+
+          
         </View>
       </View>
   );}
@@ -206,4 +228,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
+  buttonGroup:{
+    gap: 10,
+  }
 });

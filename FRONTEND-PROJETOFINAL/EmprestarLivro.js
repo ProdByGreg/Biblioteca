@@ -156,7 +156,30 @@ export default function EmprestarLivro() {
           onChangeText={setUsuarioId}
           keyboardType="numeric"
         />
-        <Button title="Emprestar Livro" color="darkgreen" onPress={Emprestar} />
+
+
+
+
+
+          <View style={styles.buttonGroup}>
+
+          <Button 
+        title="Emprestar livro" 
+        color="darkgreen" 
+        onPress={Emprestar} 
+        />
+
+          <Button
+            title="VOLTAR"
+            color="darkgreen"
+            onPress={() => navigation.navigate('Inicio')}
+          />
+
+          </View>
+
+
+
+
       </View>
     </View>
   );
@@ -219,5 +242,8 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 10,
+  },
+  buttonGroup: {
+    gap: 10,
   },
 });

@@ -111,13 +111,17 @@ export const seeBooks = async () => {
 
 
 
-export const deleteBook = async (id) => {
+
+
+
+
+export const deleteUnit = async (id) => {
   const response = await fetch(`${BOOKS_API_URL}/${id}`, {
     method: 'DELETE',
   });
 
   if (!response.ok) {
-    throw new Error('Erro ao remover livro.');
+    throw new Error('Erro ao remover unidade.');
   }
   return;
 };
@@ -127,9 +131,16 @@ export const deleteBook = async (id) => {
 
 
 
+export const deleteBook = async (id) => {
+  const response = await fetch(`${BOOKS_API_URL}/remover-livro/${id}`, {
+    method: 'DELETE',
+  });
 
-
-
+  if (!response.ok) {
+    throw new Error('Erro ao remover livro.');
+  }
+  return;
+};
 
 
 

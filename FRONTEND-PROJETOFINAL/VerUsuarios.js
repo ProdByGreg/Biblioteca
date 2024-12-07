@@ -101,11 +101,11 @@ export default function VerUsuarios() {
           </ScrollView>
 
         <View style={styles.button}>
-          <Button
-            title="VOLTAR"
-            color="darkgreen"
-            onPress={() => navigation.navigate('Inicio')}
-          />
+        <Button
+          title="Voltar"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Usuarios')}
+        />
         </View>
 
       </View>

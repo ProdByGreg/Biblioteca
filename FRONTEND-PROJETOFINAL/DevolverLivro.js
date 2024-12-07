@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
-import { getBooks, putBook2 } from './api/Api';
+import { getBooks, putBook2, seeBooks } from './api/Api';
 
 
 
@@ -22,13 +22,13 @@ export default function DevolverLivro() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await getBooks();
-
-        const borrowedBooks = response.filter(book => !book.Emprestado);
+        const response = await seeBooks();
+        const borrowedBooks = response.filter(book => book.quantidadeEmprestada > 0);
         setBooks(borrowedBooks);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
-      }};
+      }
+    };
 
 
 
@@ -158,7 +158,27 @@ export default function DevolverLivro() {
           onChangeText={setUsuarioId}
           keyboardType="numeric"
         />
-        <Button title="Devolver Livro" color="darkgreen" onPress={Devolver} />
+
+
+
+        <View style={styles.buttonGroup}>
+
+        <Button 
+        title="Devolver livro" 
+        color="darkgreen" 
+        onPress={Devolver} 
+        />
+
+        <Button
+          title="VOLTAR"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Inicio')}
+        />
+
+        </View>
+
+
+
       </View>
     </View>
   );
@@ -223,5 +243,8 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 10,
+  },
+  buttonGroup: {
+    gap: 10,
   },
 });

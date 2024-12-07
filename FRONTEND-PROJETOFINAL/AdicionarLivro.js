@@ -135,11 +135,23 @@ export default function AdicionarLivro() {
 
 
 
-        <Button
-          title="Salvar"
-          color="darkgreen"
-          onPress={Salvar}
+        <View style={styles.buttonGroup}>
+
+        <Button 
+        title="Adicionar livro" 
+        color="darkgreen" 
+        onPress={Salvar} 
         />
+
+        <Button
+          title="VOLTAR"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Inicio')}
+        />
+
+        </View>
+
+
 
       </View>
 
@@ -193,5 +205,8 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 10,
+  },
+  buttonGroup: {
+    gap: 10,
   },
 });

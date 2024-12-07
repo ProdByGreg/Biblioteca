@@ -92,17 +92,39 @@ export default function Usuarios() {
           keyboardType="numeric"
         />
 
-        <Button
-          title="Salvar"
-          color="darkgreen"
-          onPress={Salvar}
+        <View style={styles.buttonGroup}>
+
+        <Button 
+        title="Adicionar usuario" 
+        color="darkgreen" 
+        onPress={Salvar} 
         />
+
+        <Button
+          title="VOLTAR"
+          color="darkgreen"
+          onPress={() => navigation.navigate('Usuarios')}
+        />
+
+        </View>
+
+
+
+
+
 
       </View>
 
     </View>
   );
 }
+
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -143,4 +165,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
+  buttonGroup:{
+    gap: 10
+  }
 });

@@ -22,8 +22,8 @@ export default function VerLivros() {
     const fetchBooks = async () => {
       try {
         const response = await seeBooks();
-        console.log(response)
-        setBooks(response);
+        const filteredBooks = response.filter(book => book.quantidadeEmprestada > 0);
+        setBooks(filteredBooks);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
       }
@@ -75,28 +75,48 @@ export default function VerLivros() {
 
       </View>
 
+
+
+
+
+
       <View style={styles.menuview}>
+
+
+
 
         <Text style={styles.title}>Ver Livros</Text>
 
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView>
 
-          {books.map((book, index) => (
-            <View key={book.id} style={styles.bookItem}>
-              <Text style={styles.bookText}>
-              {"ID do livro:"}{book.id} {"\n"}
-              {"Titulo do livro:"}  {book.titulo} {"\n"}
-              {"Autor do livro:"} {book.autor} {"\n"}
-              {"Ano do livro:"}  {book.ano} {"\n"}
-              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
-              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
-              </Text>
-            </View>
-          ))}
+          {books.length > 0 ? (
 
+            books.map(book => (
+
+              <View key={book.id} style={styles.bookItem}>
+
+                <Text style={styles.bookText}>
+
+                  {"ID do livro:"} {book.id} {"\n"}
+                  {"Titulo do livro:"} {book.titulo} {"\n"}
+                  {"Autor do livro:"} {book.autor} {"\n"}
+                  {"Ano do livro:"} {book.ano} {"\n"}
+                  {"Quantidade disponível:"} {book.quantidade} {"\n"}
+                  {"Quantidade emprestada:"} {book.quantidadeEmprestada} {"\n"}
+                  {"Emprestado para usuarios com ID's:"} {book.usuariosEmprestados.join(", ")} {"\n"}
+
+                </Text>
+
+              </View>
+            ))
+
+          ) : (
+
+            <Text style={styles.bookText2}>Não há livros emprestados.</Text>
+          )}
 
         </ScrollView>
+
 
         <View style={styles.button}>
           <Button
@@ -106,10 +126,17 @@ export default function VerLivros() {
           />
         </View>
 
+
+
+
+
       </View>
     </View>
   );
 }
+
+
+
 
 
 
@@ -148,6 +175,11 @@ const styles = StyleSheet.create({
   },
   bookText: {
     fontSize: 16,
+    color: 'black'
+  },
+  bookText2: {
+    fontSize: 16,
+    color: 'white'
   },
   menuhorizontal: {
     flexDirection: 'row',

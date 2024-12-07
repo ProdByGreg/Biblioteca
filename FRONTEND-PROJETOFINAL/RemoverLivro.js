@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, ScrollView } from 'react-native';
-import { getBooks, deleteBook } from './api/Api';
+import { getBooks, deleteBook, deleteUnit } from './api/Api';
 
 
 
@@ -40,7 +40,7 @@ export default function RemoverLivros() {
 
 
 
-  const Remove = async () => {
+  const RemoverLivro = async () => {
     try {
       if (!id) {
         alert('Por favor, insira um ID de livro válido.');
@@ -58,6 +58,30 @@ export default function RemoverLivros() {
     } catch (error) {
       console.error('Erro ao remover livro:', error);
       alert('Erro ao remover livro!');
+    }
+  };
+
+
+
+
+  const RemoverUnidade = async () => {
+    try {
+      if (!id) {
+        alert('Por favor, insira um ID de livro válido.');
+        return;
+      }
+  
+      await deleteUnit(id);
+      alert('Unidade removida com sucesso!');
+      setId('');
+  
+
+      const updatedBooks = await getBooks();
+      setBooks(updatedBooks);
+  
+    } catch (error) {
+      console.error('Erro ao remover unidade:', error);
+      alert('Erro ao remover unidade!');
     }
   };
   
@@ -127,7 +151,7 @@ export default function RemoverLivros() {
               {"Ano do livro:"}  {book.ano} {"\n"}
               {"Quantidade disponível:"}  {book.quantidade} {"\n"}
               {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para:"} {book.usuariosEmprestados.join(", ")} {"\n"}
+              {"Emprestado para usuários com ID's:"} {book.usuariosEmprestados.join(", ")} {"\n"}
               </Text>
 
               </View>
@@ -152,7 +176,34 @@ export default function RemoverLivros() {
 
 
 
-          <Button title="Remover Livro" color="red" onPress={Remove} />
+
+
+          <View style={styles.buttonGroup}>
+
+          <Button 
+          title="Remover Livro" 
+          color="red" 
+          onPress={RemoverLivro} 
+          />
+
+          <Button 
+          title="Remover Unidade" 
+          color="orange" 
+          onPress={RemoverUnidade}
+           />
+
+          <Button
+            title="VOLTAR"
+            color="darkgreen"
+            onPress={() => navigation.navigate('Inicio')}
+          />
+
+        </View>
+
+
+
+
+
         </View>
       </View>
   );}
@@ -208,5 +259,8 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 10,
+  },
+  buttonGroup: {
+    gap: 10,
   },
 });

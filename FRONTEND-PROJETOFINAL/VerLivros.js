@@ -80,9 +80,11 @@ export default function VerLivros() {
         <Text style={styles.title}>Ver Livros</Text>
 
         <ScrollView>
+          {books.length > 0 ? (
+            books.map((book) => (
 
-          {books.map((book, index) => (
-            <View key={book.id} style={styles.bookItem}>
+              <View key={book.id} style={styles.bookItem}>
+
               <Text style={styles.bookText}>
               {"ID do livro:"}{book.id} {"\n"}
               {"Titulo do livro:"}  {book.titulo} {"\n"}
@@ -90,13 +92,16 @@ export default function VerLivros() {
               {"Ano do livro:"}  {book.ano} {"\n"}
               {"Quantidade disponível:"}  {book.quantidade} {"\n"}
               {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para o usuário com ID's:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
+              {"Emprestado para usuários com ID's:"} {book.usuariosEmprestados.join(", ")} {"\n"}
               </Text>
-            </View>
-          ))}
 
+              </View>
 
-        </ScrollView>
+              ))) : (
+                
+              <Text style={styles.bookText2}>Não há livros para exibir.</Text>
+            )}
+          </ScrollView>
 
         <View style={styles.button}>
           <Button
@@ -148,6 +153,11 @@ const styles = StyleSheet.create({
   },
   bookText: {
     fontSize: 16,
+    color: 'black'
+  },
+  bookText2: {
+    fontSize: 16,
+    color: 'white'
   },
   menuhorizontal: {
     flexDirection: 'row',
