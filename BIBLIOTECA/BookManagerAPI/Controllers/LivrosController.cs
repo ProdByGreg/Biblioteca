@@ -29,8 +29,7 @@ namespace BookManagerAPI.Controllers
     {
         private static List<Livro> books = new()
         {
-            new () { Id = 1, Titulo = "Dom Camusro", Autor = "Machado de Assis", Ano = 1899, Quantidade = 2},
-            new () { Id = 15, Titulo = "Fogo Morto", Autor = "José Lins do Rego", Ano = 1943, Quantidade = 1}
+            new () { Id = 1, Titulo = "Fogo Morto", Autor = "José Lins do Rego", Ano = 1943, Quantidade = 3}
         };
 
 
@@ -125,7 +124,7 @@ namespace BookManagerAPI.Controllers
                 return NotFound("Livro não encontrado.");
             }   
 
-            if (livro.QuantidadeEmprestada > livro.Quantidade)
+            if (livro.Quantidade == 0)
             {
                 return BadRequest("Todas as unidades do livro já foram emprestadas.");
             }
@@ -169,9 +168,9 @@ namespace BookManagerAPI.Controllers
                 return NotFound("Livro não encontrado.");
             }
 
-            if (livro.QuantidadeEmprestada < livro.Quantidade)
+            if (livro.QuantidadeEmprestada == 0)
             {
-                return BadRequest("Não há unidades emprestadas");
+                return BadRequest("Todas as unidades do livro já foram emprestadas.");
             }
 
             livro.Quantidade++;
@@ -179,7 +178,7 @@ namespace BookManagerAPI.Controllers
             livro.QuantidadeEmprestada--;
 
 
-            return Ok($"Livro {livro.Titulo} emprestado para o usuário de ID:{string.Join(", ", usuarioId)}. Quantidade emprestada: {livro.QuantidadeEmprestada}/{livro.Quantidade}");
+            return Ok($"O livro {livro.Titulo} emprestado para o usuário de ID:{string.Join(", ", usuarioId)}, foi devolvido. Quantidade emprestada: {livro.QuantidadeEmprestada}/{livro.Quantidade}");
         }
 
 
@@ -204,18 +203,31 @@ namespace BookManagerAPI.Controllers
 
 
 
-            [HttpGet("emprestados")]
-        public ActionResult<List<Livro>> ObterLivrosEmprestados()
-        {
 
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet("emprestados")]
+        public ActionResult<List<Livro>> LivrosEmprestados()
+        {
+  
             var livrosEmprestados = books
                 .Where(livro => livro.QuantidadeEmprestada > 0)
                 .Select(livro => new
                 {
+                    livro.Id,
                     livro.Titulo,
                     livro.Autor,
                     livro.QuantidadeEmprestada,
-                    UsuariosEmprestados = livro.UsuariosEmprestados
+                    livro.Quantidade
                 })
                 .ToList();
 
@@ -229,37 +241,6 @@ namespace BookManagerAPI.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-       /* [HttpGet("{id}/emprestados")]
-        public ActionResult ObterLivrosEmprestadosPorId(int id)
-        {
-            var livro = books.FirstOrDefault(l => l.Id == id);
-
-            if (livro == null)
-            {
-                return NotFound("Livro não encontrado.");
-            }
-
-            var livroEmprestadoInfo = new
-            {
-                livro.Titulo,
-                livro.Autor,
-                QuantidadeDisponivel = livro.Quantidade - livro.QuantidadeEmprestada,
-                QuantidadeEmprestada = livro.QuantidadeEmprestada,
-                UsuariosEmprestados = livro.UsuariosEmprestados
-            };
-
-            return Ok(livroEmprestadoInfo);
-        }*/
 
 
 

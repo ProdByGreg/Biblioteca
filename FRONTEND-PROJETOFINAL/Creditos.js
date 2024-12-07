@@ -44,23 +44,8 @@ export default function Inicio() {
             GREGORY - FRONT-END / BACK-END.
             <br></br>
             ENZO - FRONT-END / BACK-END.
-        </Text>
-        <Text style={styles.info}>CREDITOS</Text>
-        <Text style={styles.info2}>
-            YURI - SOLUÇÃO DE BUGS.
-            <br></br>
-            ARTHUR - SOLUÇÃO DE BUGS.
-            <br></br>
-            GUSTAVO - SOLUÇÃO DE BUGS.
-            <br></br>
-            LEANDRO - SOLUÇÃO DE BUGS.
-            <br></br>
-            <br></br>
-            BERNARDO - ANALISE DE DADOS.
-            <br></br>
-            <br></br>
-            PROFESSOR: GUSTAVO SPERANDIO
-        </Text>
+        </Text> 
+
 
       </View>
 
@@ -90,12 +75,14 @@ const styles = StyleSheet.create({
   },
   info: {
     color: 'white',
+    textAlign: 'center',
     fontSize: 16,
     marginBottom: 30,
     fontWeight: 'bold',
   },
   info2: {
     color: 'white',
+    textAlign: 'center',
     fontSize: 13,
     marginBottom: 30,
     fontWeight: 'bold',

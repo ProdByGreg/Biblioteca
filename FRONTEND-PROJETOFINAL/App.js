@@ -8,6 +8,9 @@ import EmprestarLivro from './EmprestarLivro.js';
 import DevolverLivro from './DevolverLivro.js';
 import RemoverLivro from './RemoverLivro.js';
 import Usuarios from './Usuarios.js';
+import AdicionarUsuario from './AdicionarUsuario.js';
+import RemoverUsuario from './RemoverUsuario.js';
+import VerUsuarios from './VerUsuarios.js';
 import Info from './Info.js';
 import Creditos from './Creditos.js';
 import Emprestados from './Emprestados.js';
@@ -28,6 +31,9 @@ export default function App() {
         <Stack.Screen name="Info" component={Info} />
         <Stack.Screen name="Creditos" component={Creditos} />
         <Stack.Screen name="Emprestados" component={Emprestados} />
+        <Stack.Screen name="VerUsuarios" component={VerUsuarios} />
+        <Stack.Screen name="AdicionarUsuario" component={AdicionarUsuario} />
+        <Stack.Screen name="RemoverUsuario" component={RemoverUsuario} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -30,11 +30,9 @@ namespace BookManagerAPI.Controllers
     {
 
         private static List<Usuario> usuarios = new List<Usuario>() {
-            new () { Id = 1, Nome = "Juninho Junior", Telefone = 41997418123, Idade = 20},
-            new () { Id = 1, Nome = "Juninho Roberto", Telefone = 4199841622, Idade = 22},
-            new () { Id = 2, Nome = "Juninho Carlos", Telefone = 41997411911, Idade = 25}
+            new () { Id = 3, Nome = "Juninho Carlos", Telefone = 41997411911, Idade = 25}
         };
-
+            
 
 
 

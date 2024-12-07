@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:5174/api';
 const BOOKS_API_URL = `${BASE_URL}/Livros`;
-const USERS_API_URL = `${BASE_URL}/Usuarios`;
+const USERS_API_URL = `${BASE_URL}/Usuario`;
 
 
 
@@ -143,11 +143,14 @@ export const deleteBook = async (id) => {
 
 
 
-
-
 export const getUsers = async () => {
+  
   const response = await fetch(USERS_API_URL);
-  if (!response.ok) throw new Error('Erro ao buscar dados dos usuários.');
+
+  if (!response.ok) 
+    throw new Error
+  ('Erro ao buscar dados dos usuário.');
+
   return await response.json();
 };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
-import { getBooks } from './api/Api';
+import { getUsers } from './api/Api';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function VerLivros() {
+export default function VerUsuarios() {
   const navigation = useNavigation();
-  const [books, setBooks] = useState([]);
+  const [users, setUsers] = useState([]);
 
 
 
@@ -19,13 +19,13 @@ export default function VerLivros() {
 
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchUsers = async () => {
       try {
-        const response = await getBooks();
+        const response = await getUsers();
         console.log(response)
-        setBooks(response);
+        setUsers(response);
       } catch (error) {
-        console.error('Erro ao buscar livros:', error);
+        console.error('Erro ao buscar usuários:', error);
       }
     };
 
@@ -33,7 +33,7 @@ export default function VerLivros() {
 
 
 
-    fetchBooks();
+    fetchUsers();
   }, []);
 
   return (
@@ -77,26 +77,28 @@ export default function VerLivros() {
 
       <View style={styles.menuview}>
 
-        <Text style={styles.title}>Ver Livros</Text>
+        <Text style={styles.title}>Ver Usuários</Text>
 
         <ScrollView>
+          {users.length > 0 ? (
+            users.map((user) => (
 
-          {books.map((book, index) => (
-            <View key={book.id} style={styles.bookItem}>
-              <Text style={styles.bookText}>
-              {"ID do livro:"}{book.id} {"\n"}
-              {"Titulo do livro:"}  {book.titulo} {"\n"}
-              {"Autor do livro:"} {book.autor} {"\n"}
-              {"Ano do livro:"}  {book.ano} {"\n"}
-              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
-              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para o usuário com ID's:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
+              <View key={user.id} style={styles.userItem}>
+
+              <Text style={styles.userText}>
+              {"ID do usuário:"}{user.id} {"\n"}
+              {"Nome do usuário:"}  {user.nome} {"\n"}
+              {"Telefone do usuário:"} {user.telefone} {"\n"}
+              {"Idade do usuário:"}  {user.idade} {"\n"}
               </Text>
-            </View>
-          ))}
 
+              </View>
 
-        </ScrollView>
+              ))) : (
+                
+              <Text style={styles.userText2}>Não há usuários para exibir.</Text>
+            )}
+          </ScrollView>
 
         <View style={styles.button}>
           <Button
@@ -140,14 +142,19 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontWeight: 'bold',
   },
-  bookItem: {
+  userItem: {
     backgroundColor: 'white',
     padding: 12,
     marginVertical: 8,
     borderRadius: 4,
   },
-  bookText: {
+  userText: {
     fontSize: 16,
+    color: 'black',
+  },
+  userText2: {
+    fontSize: 16,
+    color: 'white',
   },
   menuhorizontal: {
     flexDirection: 'row',

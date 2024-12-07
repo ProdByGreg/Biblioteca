@@ -56,8 +56,8 @@ export default function DevolverLivro() {
 
 
 
-      const updatedBooks = await getBooks();
-      setBooks(updatedBooks);
+      const updatedBooks2 = await getBooks();
+      setBooks(updatedBooks2);
 
     } catch (error) {
       console.error('Erro ao devolver livro:', error);
@@ -158,7 +158,7 @@ export default function DevolverLivro() {
           onChangeText={setUsuarioId}
           keyboardType="numeric"
         />
-        <Button title="Emprestar Livro" color="darkgreen" onPress={Devolver} />
+        <Button title="Devolver Livro" color="darkgreen" onPress={Devolver} />
       </View>
     </View>
   );
