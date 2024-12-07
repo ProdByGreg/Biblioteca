@@ -110,7 +110,7 @@ namespace BookManagerAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeletarUsuario(int id)
         {
-            var usuario = usuarios.FirstOrDefault(u => u.Id == id);
+            var usuario = usuarios.FirstOrDefault(usuario => usuario.Id == id);
 
             if (usuario == null)
             {

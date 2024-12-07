@@ -216,9 +216,9 @@ namespace BookManagerAPI.Controllers
 
 
         [HttpGet("emprestados")]
-        public ActionResult<List<Livro>> LivrosEmprestados()
+        public ActionResult LivrosEmprestados()
         {
-  
+
             var livrosEmprestados = books
                 .Where(livro => livro.QuantidadeEmprestada > 0)
                 .Select(livro => new
@@ -231,14 +231,16 @@ namespace BookManagerAPI.Controllers
                 })
                 .ToList();
 
-
             if (!livrosEmprestados.Any())
             {
-                return NoContent();
+                return BadRequest("Não há livros emprestados.");
+
             }
 
             return Ok(livrosEmprestados);
         }
+
+
 
 
 
@@ -284,6 +286,35 @@ namespace BookManagerAPI.Controllers
 
             return Ok(books);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpDelete("remover-livro/{id}")]
+        public ActionResult RemoverLivroInteiro(int id)
+        {
+            var livro = books.FirstOrDefault(livro => livro.Id == id);
+
+            if (livro == null)
+            {
+                return NotFound("Livro não encontrado.");
+            }
+
+            books.Remove(livro);
+
+            return Ok($"O livro com ID {id} foi removido completamente.");
+        }
+
 
 
 
