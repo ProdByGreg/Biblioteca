@@ -29,8 +29,15 @@ namespace BookManagerAPI.Controllers
     public class UsuarioController : ControllerBase
     {
 
-        private static List<Usuario> usuarios = new List<Usuario>() {
-            new () { Id = 3, Nome = "Juninho Carlos", Telefone = 41997411911, Idade = 25}
+        private static List<Usuario> usuarios = new() 
+
+        {
+            new () { Id = 1, Nome = "Juninho Junior", Telefone = 41997411911, Idade = 25},
+            new () { Id = 2, Nome = "Juninho Carlos", Telefone = 4198452633, Idade = 20},
+            new () { Id = 3, Nome = "Juninho Alberto", Telefone = 4187785256, Idade = 19},
+            new () { Id = 4, Nome = "Juninho Alves", Telefone = 41997411911, Idade = 25},
+            new () { Id = 5, Nome = "Juninho Silva", Telefone = 4198452633, Idade = 20},
+            new () { Id = 6, Nome = "Juninho Santos", Telefone = 4187785256, Idade = 19},
         };
             
 

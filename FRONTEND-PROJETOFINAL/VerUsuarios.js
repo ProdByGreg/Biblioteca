@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { getUsers } from './api/Api';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function VerUsuarios() {
   const navigation = useNavigation();
   const [users, setUsers] = useState([]);
-
+  const [expandedUser, setExpandedUser] = useState(null);
 
 
 
@@ -22,7 +22,7 @@ export default function VerUsuarios() {
     const fetchUsers = async () => {
       try {
         const response = await getUsers();
-        console.log(response)
+        console.log(response);
         setUsers(response);
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
@@ -31,90 +31,110 @@ export default function VerUsuarios() {
 
 
 
-
-
     fetchUsers();
   }, []);
 
+
+
+
+
+
+  const Expand = (userId) => {
+    setExpandedUser(expandedUser === userId ? null : userId);
+  };
+
+
+
+
+
+
   return (
-
-
-
-
-
-
-
-
     <View style={styles.body}>
-
-      <View style={styles.menuhorizontal}>
-
-        <Button
-          title="Início"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Inicio')}
-        />
-
-        <Button
-          title="Usuarios"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Usuarios')}
-        />
-
-        <Button
-          title="Informação"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Info')}
-        />
-
-        <Button
-          title="Créditos"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Creditos')}
-        />
-
-      </View>
 
       <View style={styles.menuview}>
 
         <Text style={styles.title}>Ver Usuários</Text>
 
+
+
         <ScrollView>
+
+
           {users.length > 0 ? (
             users.map((user) => (
 
+
+
               <View key={user.id} style={styles.userItem}>
 
-              <Text style={styles.userText}>
-              {"ID do usuário:"}{user.id} {"\n"}
-              {"Nome do usuário:"}  {user.nome} {"\n"}
-              {"Telefone do usuário:"} {user.telefone} {"\n"}
-              {"Idade do usuário:"}  {user.idade} {"\n"}
-              </Text>
+                <TouchableOpacity onPress={() => Expand(user.id)}>
+
+                  <Text style={styles.userButton}>Nome do usuário: {user.nome}</Text>
+
+                </TouchableOpacity>
+
+
+
+
+                {expandedUser === user.id && (
+
+
+                  <View style={styles.detalhes}>
+
+                    <Text style={styles.userText}>
+                      ID do usuário: {user.id}
+                    </Text>
+
+                    <Text style={styles.userText}>
+                      Nome: {user.nome}
+                    </Text>
+
+                    <Text style={styles.userText}>
+                      Telefone: {user.telefone}
+                    </Text>
+
+                    <Text style={styles.userText}>
+                      Idade: {user.idade}
+                    </Text>
+
+                  </View>
+
+
+
+                )}
 
               </View>
 
-              ))) : (
-                
-              <Text style={styles.userText2}>Não há usuários para exibir.</Text>
-            )}
-          </ScrollView>
+            ))
 
-        <View style={styles.button}>
+          ) : (
+
+            <Text style={styles.userText2}>Não há usuários para exibir.</Text>
+
+          )}
+
+
+        </ScrollView>
+
+
+
+
+
+
+
         <Button
           title="Voltar"
           color="darkgreen"
           onPress={() => navigation.navigate('Usuarios')}
         />
-        </View>
 
       </View>
+
     </View>
+
   );
+
 }
-
-
-
 
 
 
@@ -129,11 +149,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   menuview: {
+    height: 500,
     backgroundColor: 'rgb(128, 21, 199)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 10,
   },
   title: {
     color: 'white',
@@ -148,21 +169,25 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderRadius: 4,
   },
+  userButton: {
+    height: 15,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'darkgreen',
+    textAlign: 'center',
+  },
+  detalhes: {
+    marginTop: 8,
+    padding: 8,
+    backgroundColor: 'lightgrey',
+    borderRadius: 4,
+  },
   userText: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'black',
   },
   userText2: {
     fontSize: 16,
     color: 'white',
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
   },
 });

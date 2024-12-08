@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { getUsers, deleteUser } from './api/Api';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -9,10 +9,10 @@ import { getUsers, deleteUser } from './api/Api';
 
 
 export default function RemoverUsuarios() {
+  const navigation = useNavigation();
   const [id, setId] = useState('');
   const [users, setUsers] = useState([]);
-
-
+  const [expandedUser, setExpandedUser] = useState(null);
 
 
 
@@ -29,12 +29,9 @@ export default function RemoverUsuarios() {
       }
     };
 
-
-
-
-
     fetchUsers();
   }, []);
+
 
 
 
@@ -43,7 +40,7 @@ export default function RemoverUsuarios() {
   const RemoverUsuario = async () => {
     try {
       if (!id) {
-        alert('Por favor, insira um ID de usuario válido.');
+        alert('Por favor, insira um ID de usuário válido.');
         return;
       }
   
@@ -51,130 +48,144 @@ export default function RemoverUsuarios() {
       alert('Usuário removido com sucesso!');
       setId('');
   
-
       const updateUsers = await getUsers();
       setUsers(updateUsers);
   
     } catch (error) {
-      console.error('Erro ao remover usuario:', error);
-      alert('Erro ao remover usuario!');
+      console.error('Erro ao remover usuário:', error);
+      alert('Erro ao remover usuário!');
     }
   };
-  
+
+
+
+
+
+
+  const Expand = (userId) => {
+    setExpandedUser(expandedUser === userId ? null : userId);
+  };
+
+
+
+
+
 
   return (
 
-
-
-
-
-
-
     <View style={styles.body}>
 
-
-      <View style={styles.menuhorizontal}>
-
-      <Button 
-      title="Início" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Inicio')}
-      />
-
-      <Button 
-      title="Usuarios"
-      color="darkgreen"
-      onPress={() => navigation.navigate('Usuarios')}
-      />
-
-      <Button 
-      title="Informação" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Info')}
-      />
-
-      <Button 
-      title="Créditos" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Creditos')}
-      />
-
-      </View>
-
-
-
-
-
-
-        <View style={styles.menuremover}>
+      <View style={styles.menuremover}>
 
         <Text style={styles.title}>REMOVER USUARIO</Text>
 
 
 
 
-
         <ScrollView>
+
+
           {users.length > 0 ? (
             users.map((user) => (
 
+
               <View key={user.id} style={styles.userItem}>
 
-              <Text style={styles.userText}>
-              {"ID do usuário:"}{user.id} {"\n"}
-              {"Nome do usuário:"}  {user.nome} {"\n"}
-              {"Telefone do usuário:"} {user.telefone} {"\n"}
-              {"Idade do usuário:"}  {user.idade} {"\n"}
-              </Text>
+
+
+
+                <TouchableOpacity onPress={() => Expand(user.id)}>
+
+                  <Text style={styles.userButton}>
+                    Nome do usuário: {user.nome}
+                  </Text>
+
+                </TouchableOpacity>
+
+
+
+
+
+                {expandedUser === user.id && (
+                  <View style={styles.detalhes}>
+
+                    <Text style={styles.userText}>
+                      ID do usuário: {user.id}
+                    </Text>
+
+                    <Text style={styles.userText}>
+                      Nome: {user.nome}
+                    </Text>
+
+                    <Text style={styles.userText}>
+                      Telefone: {user.telefone}
+                    </Text>
+
+                    <Text style={styles.userText}>
+                      Idade: {user.idade}
+                    </Text>
+
+                  </View>
+
+                )}
 
               </View>
 
-              ))) : (
-                
-              <Text style={styles.userText2}>Não há usuários para remover.</Text>
-            )}
-          </ScrollView>
+            ))
+
+          ) : (
+
+            <Text style={styles.userText2}>Não há usuários para remover.</Text>
+
+          )}
 
 
-
-
-          <TextInput
-            style={styles.input}
-            placeholder="ID do Usuário"
-            value={id}
-            onChangeText={setId}
-            keyboardType="numeric"
-          />
+        </ScrollView>
 
 
 
 
 
 
-          <View style={styles.buttonGroup}>
+        <TextInput
+          style={styles.input}
+          placeholder="ID do Usuário"
+          value={id}
+          onChangeText={setId}
+          keyboardType="numeric"
+        />
 
+
+        <View style={styles.buttonGroup}>
           <Button 
           title="Remover usuário" 
           color="red" 
-          onPress={RemoverUsuario} 
-          />
+          onPress={RemoverUsuario}
+           />
 
-          <Button
-          title="Voltar"
-          color="darkgreen"
+          <Button 
+          title="Voltar" 
+          color="darkgreen" 
           onPress={() => navigation.navigate('Usuarios')}
-          />
+           />
 
-          </View>
-
-
-
-
-
-          
         </View>
+
+
+
+
       </View>
-  );}
+
+    </View>
+
+  );
+
+}
+
+
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -183,23 +194,36 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   menuremover: {
+    height: 500,
     backgroundColor: 'rgb(128, 21, 199)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 10,
   },
   title: {
     color: 'white',
     textAlign: 'center',
     fontSize: 20,
-    marginBottom: 30,
+    marginBottom: 10,
     fontWeight: 'bold',
   },
   userItem: {
     backgroundColor: 'white',
-    padding: 12,
+    padding: 8,
     marginVertical: 8,
+    borderRadius: 4,
+  },
+  userButton: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'darkgreen',
+    textAlign: 'center',
+  },
+  detalhes: {
+    marginTop: 8,
+    padding: 8,
+    backgroundColor: 'lightgrey',
     borderRadius: 4,
   },
   userText: {
@@ -211,24 +235,17 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   input: {
-    height: 40,
+    padding: 5,
     borderColor: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'lightgrey',
     borderWidth: 1,
+    marginTop: 10,
     marginBottom: 10,
     paddingLeft: 8,
     color: 'black',
+    borderRadius: 4,
   },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
-  },
-  buttonGroup:{
+  buttonGroup: {
     gap: 10,
-  }
+  },
 });

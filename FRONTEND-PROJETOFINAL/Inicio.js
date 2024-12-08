@@ -8,32 +8,6 @@ export default function Inicio() {
   return (
     <View style={styles.body}>
 
-      <View style={styles.menuhorizontal}>
-        <Button 
-        title="Início" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Inicio')}
-         />
-
-        <Button 
-        title="Usuarios"
-        color="darkgreen"
-        onPress={() => navigation.navigate('Usuarios')}
-         />
-
-        <Button 
-        title="Informação" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Info')}
-         />
-
-        <Button 
-        title="Créditos" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Creditos')}
-         />
-      </View>
-      
 
       <View style={styles.menu}>
 
@@ -86,6 +60,14 @@ export default function Inicio() {
             onPress={() => navigation.navigate('RemoverLivro')}
           />
         </View>
+
+        <View style={styles.button}>
+          <Button
+            title="Usuários"
+            color="darkgreen"
+            onPress={() => navigation.navigate('Usuarios')}
+          />
+        </View>
         
 
       </View>
@@ -105,7 +87,7 @@ const styles = StyleSheet.create({
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 40,
   },
   title: {
     color: 'white',
@@ -116,14 +98,5 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 15,
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
   },
 });

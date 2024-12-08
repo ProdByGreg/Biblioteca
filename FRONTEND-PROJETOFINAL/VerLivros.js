@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { getBooks } from './api/Api';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function VerLivros() {
   const navigation = useNavigation();
   const [books, setBooks] = useState([]);
+  const [expandedBook, setExpandedBook] = useState(null);
 
 
 
@@ -22,86 +23,135 @@ export default function VerLivros() {
     const fetchBooks = async () => {
       try {
         const response = await getBooks();
-        console.log(response)
+        console.log(response);
         setBooks(response);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
       }
     };
 
-
-
-
-
     fetchBooks();
   }, []);
 
+
+
+
+
+
+
+  
+
+  const Expand = (bookId) => {
+    setExpandedBook(expandedBook === bookId ? null : bookId);
+  };
+
+
+
+
+
+
+
   return (
-
-
-
-
-
-
-
-
     <View style={styles.body}>
 
-      <View style={styles.menuhorizontal}>
 
-        <Button
-          title="Início"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Inicio')}
-        />
 
-        <Button
-          title="Usuarios"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Usuarios')}
-        />
 
-        <Button
-          title="Informação"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Info')}
-        />
 
-        <Button
-          title="Créditos"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Creditos')}
-        />
 
-      </View>
+
+
+
+
 
       <View style={styles.menuview}>
 
-        <Text style={styles.title}>Ver Livros</Text>
+        <Text style={styles.title}>VER LIVROS</Text>
+
+
+
+
 
         <ScrollView>
+
           {books.length > 0 ? (
             books.map((book) => (
 
               <View key={book.id} style={styles.bookItem}>
 
-              <Text style={styles.bookText}>
-              {"ID do livro:"}{book.id} {"\n"}
-              {"Titulo do livro:"}  {book.titulo} {"\n"}
-              {"Autor do livro:"} {book.autor} {"\n"}
-              {"Ano do livro:"}  {book.ano} {"\n"}
-              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
-              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para usuários com ID's:"} {book.usuariosEmprestados.join(", ")} {"\n"}
-              </Text>
 
+
+
+
+
+
+                <TouchableOpacity onPress={() => Expand(book.id)}>
+
+                  <Text style={styles.bookButton}>
+                    Titulo do livro: {book.titulo}
+                  </Text>
+
+                </TouchableOpacity>
+
+
+
+
+
+
+                {expandedBook === book.id && (
+                  <View style={styles.detalhes}>
+
+                    <Text style={styles.bookText}>
+                    ID do livro: {book.id}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                    Titulo: {book.titulo}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                    Autor: {book.autor}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                    Ano: {book.ano}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                    Quantidade disponível: {book.quantidade}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                    Quantidade emprestada: {book.quantidadeEmprestada}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                    Emprestado para usuários com ID's: {book.usuariosEmprestados.join(', ')}
+                    </Text>
+
+                  </View>
+                )}
               </View>
 
-              ))) : (
-                
-              <Text style={styles.bookText2}>Não há livros para exibir.</Text>
-            )}
-          </ScrollView>
+
+
+
+            ))
+          ) : (
+            <Text style={styles.bookText2}>Não há livros para exibir.</Text>
+          )}
+
+        </ScrollView>
+
+
+
+
+
+
+
+
+
+
 
         <View style={styles.button}>
           <Button
@@ -110,11 +160,12 @@ export default function VerLivros() {
             onPress={() => navigation.navigate('Inicio')}
           />
         </View>
-
       </View>
     </View>
   );
 }
+
+
 
 
 
@@ -132,17 +183,18 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   menuview: {
+    height: 500,
     backgroundColor: 'rgb(128, 21, 199)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 10,
   },
   title: {
     color: 'white',
     textAlign: 'center',
     fontSize: 20,
-    marginBottom: 30,
+    marginBottom: 10,
     fontWeight: 'bold',
   },
   bookItem: {
@@ -151,21 +203,25 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderRadius: 4,
   },
+  bookButton: {
+    height: 15,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'darkgreen',
+    textAlign: 'center',
+  },
+  detalhes: {
+    marginTop: 8,
+    padding: 8,
+    backgroundColor: 'lightgrey',
+    borderRadius: 4,
+  },
   bookText: {
-    fontSize: 16,
-    color: 'black'
+    fontSize: 14,
+    color: 'black',
   },
   bookText2: {
     fontSize: 16,
-    color: 'white'
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
+    color: 'white',
   },
 });

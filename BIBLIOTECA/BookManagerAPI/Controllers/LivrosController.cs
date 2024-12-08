@@ -27,9 +27,30 @@ namespace BookManagerAPI.Controllers
 
     public class LivrosController : ControllerBase
     {
+
+
+
+
+
         private static List<Livro> books = new()
+
         {
-            new () { Id = 1, Titulo = "Fogo Morto", Autor = "José Lins do Rego", Ano = 1943, Quantidade = 3}
+            new () { Id = 1, Titulo = "Dom Camusro", Autor = "Machado de Assis", Ano = 1899, Quantidade = 2 },
+            new () { Id = 2, Titulo = "Memórias Póstumas", Autor = "Machado de Assis", Ano = 1881, Quantidade = 3 },
+            new () { Id = 3, Titulo = "Grande Sertão Veredas", Autor = "João Guimarães Rosa", Ano = 1956, Quantidade = 4 },
+            new () { Id = 4, Titulo = "O Cortiço", Autor = "Aluísio Azevedo", Ano = 1890, Quantidade = 4 },
+            new () { Id = 5, Titulo = "Iracema", Autor = "José de Alencar", Ano = 1865, Quantidade = 1 },
+            new () { Id = 6, Titulo = "Macunaíma", Autor = "Mário de Andrade", Ano = 1928, Quantidade = 11 },
+            new () { Id = 7, Titulo = "Capitães de Areia", Autor = "Jorge Amado", Ano = 1937, Quantidade = 2 },
+            new () { Id = 8, Titulo = "Vidas Secas", Autor = "Graciliano Ramos", Ano = 1938, Quantidade = 9 },
+            new () { Id = 9, Titulo = "A Moreninha", Autor = "Joaquim Manuel de Macedo", Ano = 1844, Quantidade = 2 },
+            new () { Id = 10, Titulo = "O Tempo e o Vento", Autor = "Érico Veríssimo", Ano = 1949, Quantidade = 1 },
+            new () { Id = 11, Titulo = "A Hora da Estrela", Autor = "Clarice Lispector", Ano = 1977, Quantidade = 2 },
+            new () { Id = 12, Titulo = "O Quinze", Autor = "Rachel de Queiroz", Ano = 1930, Quantidade = 1 },
+            new () { Id = 13, Titulo = "Menino do Engenho", Autor = "José Lins do Rego", Ano = 1932, Quantidade = 5 },
+            new () { Id = 14, Titulo = "Sagarana", Autor = "João Guimarães Rosa", Ano = 1946, Quantidade = 3 },
+            new () { Id = 15, Titulo = "Fogo Morto", Autor = "José Lins do Rego", Ano = 1943, Quantidade = 3}
+
         };
 
 

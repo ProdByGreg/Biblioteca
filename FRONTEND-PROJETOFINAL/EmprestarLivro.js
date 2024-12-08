@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { getBooks, putBook } from './api/Api';
 
 
@@ -7,12 +7,12 @@ import { getBooks, putBook } from './api/Api';
 
 
 
-
 export default function EmprestarLivro() {
+
   const [id, setId] = useState('');
   const [usuarioId, setUsuarioId] = useState('');
   const [books, setBooks] = useState([]);
-
+  const [expandedBookId, setExpandedBookId] = useState(null);
 
 
 
@@ -20,20 +20,35 @@ export default function EmprestarLivro() {
 
 
   useEffect(() => {
+
     const fetchBooks = async () => {
       try {
         const response = await getBooks();
-
-        const availableBooks = response.filter(book => !book.Emprestado);
+        const availableBooks = response.filter((book) => !book.Emprestado);
         setBooks(availableBooks);
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
-      }};
+      }
+    };
+
 
 
 
     fetchBooks();
   }, []);
+
+
+
+
+
+
+
+  const Expand = (bookId) => {
+    setExpandedBookId((view) => (view === bookId ? null : bookId));
+  };
+
+
+
 
 
 
@@ -51,56 +66,25 @@ export default function EmprestarLivro() {
       setId('');
       setUsuarioId('');
 
-
-
-
-
-
       const updatedBooks = await getBooks();
       setBooks(updatedBooks);
-
     } catch (error) {
       console.error('Erro ao emprestar livro:', error);
       alert('Erro ao emprestar livro!');
     }
   };
 
+
+
+
+
+
+
+
+
   return (
 
-
-
-
-
-
-
     <View style={styles.body}>
-      <View style={styles.menuhorizontal}>
-
-        <Button 
-        title="Início" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Inicio')}
-         />
-
-        <Button 
-        title="Usuarios" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Usuarios')}
-         />
-
-        <Button 
-        title="Informação" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Info')} 
-        />
-
-        <Button 
-        title="Créditos" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Creditos')} 
-        />
-
-      </View>
 
 
 
@@ -112,32 +96,78 @@ export default function EmprestarLivro() {
 
 
 
-
         <ScrollView>
+
           {books.length > 0 ? (
             books.map((book) => (
 
+
+
               <View key={book.id} style={styles.bookItem}>
 
-              <Text style={styles.bookText}>
-              {"ID do livro:"}{book.id} {"\n"}
-              {"Titulo do livro:"}  {book.titulo} {"\n"}
-              {"Autor do livro:"} {book.autor} {"\n"}
-              {"Ano do livro:"}  {book.ano} {"\n"}
-              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
-              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para o usuario de ID:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
-              </Text>
+
+
+
+
+                <TouchableOpacity onPress={() => Expand(book.id)}>
+
+                  <Text style={styles.bookButton}>
+                    Titulo do livro: {book.titulo}
+                  </Text>
+
+                </TouchableOpacity>
+
+
+
+
+                {expandedBookId === book.id && (
+
+                  <View style={styles.detalhes}>
+
+                    <Text style={styles.bookText}>
+                      ID do Livro: {book.id}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Título: {book.titulo}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Autor: {book.autor}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Ano: {book.ano}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Quantidade disponível: {book.quantidade}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Quantidade emprestada: {book.quantidadeEmprestada}
+                    </Text>
+                      
+                    <Text style={styles.bookText}>
+                      Emprestado para usuários com ID: {book.usuariosEmprestados.join(', ')}
+                    </Text>
+
+                  </View>
+                )}
 
               </View>
+
+
+
+
             ))
+
+
           ) : (
             <Text style={styles.bookText2}>Não há livros disponíveis.</Text>
           )}
+
         </ScrollView>
-
-
-
 
 
 
@@ -149,6 +179,7 @@ export default function EmprestarLivro() {
           onChangeText={setId}
           keyboardType="numeric"
         />
+
         <TextInput
           style={styles.input}
           placeholder="ID do Usuário"
@@ -157,33 +188,31 @@ export default function EmprestarLivro() {
           keyboardType="numeric"
         />
 
-
-
-
-
-          <View style={styles.buttonGroup}>
+        <View style={styles.buttonGroup}>
+          <Button 
+          title="Emprestar livro" 
+          color="darkgreen" 
+          onPress={Emprestar}
+           />
 
           <Button 
-        title="Emprestar livro" 
-        color="darkgreen" 
-        onPress={Emprestar} 
-        />
+          title="VOLTAR" 
+          color="darkgreen" 
+          onPress={() => navigation.navigate('Inicio')}
+           />
 
-          <Button
-            title="VOLTAR"
-            color="darkgreen"
-            onPress={() => navigation.navigate('Inicio')}
-          />
-
-          </View>
-
+        </View>
 
 
 
       </View>
+
+
     </View>
   );
 }
+
+
 
 
 
@@ -198,50 +227,56 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   menuemprestar: {
+    height: 500,
     backgroundColor: 'rgb(128, 21, 199)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 0,
   },
   title: {
     color: 'white',
     textAlign: 'center',
     fontSize: 20,
-    marginBottom: 30,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
   bookItem: {
     backgroundColor: 'white',
-    padding: 12,
+    padding: 6,
     marginVertical: 8,
     borderRadius: 4,
   },
+  bookButton: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'darkgreen',
+    textAlign: 'center',
+  },
+  detalhes: {
+    marginTop: 8,
+    padding: 8,
+    backgroundColor: 'lightgrey',
+    borderRadius: 4,
+  },
   bookText: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'black',
   },
   bookText2: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'white',
   },
   input: {
-    height: 40,
+    padding: 5,
     borderColor: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'lightgrey',
     borderWidth: 1,
+    marginTop: 10,
     marginBottom: 10,
     paddingLeft: 8,
     color: 'black',
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
+    borderRadius: 4,
   },
   buttonGroup: {
     gap: 10,

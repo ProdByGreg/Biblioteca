@@ -14,7 +14,6 @@ const USERS_API_URL = `${BASE_URL}/Usuario`;
 
 
 
-
 export const getBooks = async () => {
   
   const response = await fetch(BOOKS_API_URL);

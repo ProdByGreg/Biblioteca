@@ -63,33 +63,6 @@ export default function AdicionarLivro() {
   return (
     <View style={styles.body}>
 
-        <View style={styles.menuhorizontal}>
-
-        <Button 
-        title="Início" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Inicio')}
-         />
-
-        <Button 
-        title="Usuarios"
-        color="darkgreen"
-        onPress={() => navigation.navigate('Usuarios')}
-         />
-
-        <Button 
-        title="Informação" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Info')}
-         />
-
-        <Button 
-        title="Créditos" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Creditos')}
-         />
-
-        </View>
 
 
 
@@ -188,23 +161,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 40,
-    backgroundColor: 'white',
+    height: 30,
+    backgroundColor: 'lightgrey',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 12,
     paddingHorizontal: 8,
     color: 'black',
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
   },
   buttonGroup: {
     gap: 10,

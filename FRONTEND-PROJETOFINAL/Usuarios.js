@@ -8,36 +8,11 @@ export default function Inicio() {
   return (
     <View style={styles.body}>
 
-      <View style={styles.menuhorizontal}>
-        <Button 
-        title="Início" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Inicio')}
-         />
-
-        <Button 
-        title="Livros"
-        color="darkgreen"
-        onPress={() => navigation.navigate('VerLivros')}
-         />
-
-        <Button 
-        title="Informação" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Info')}
-         />
-
-        <Button 
-        title="Créditos" 
-        color="darkgreen" 
-        onPress={() => navigation.navigate('Creditos')}
-         />
-      </View>
       
 
       <View style={styles.menu}>
 
-        <Text style={styles.title}>VER USUARIOS</Text>
+        <Text style={styles.title}>GERENCIAR USUÁRIOS</Text>
 
         <View style={styles.button}>
           <Button
@@ -57,12 +32,19 @@ export default function Inicio() {
 
         <View style={styles.button}>
           <Button
-            title="Deletar usuário"
+            title="Remover usuário"
             color="darkgreen"
             onPress={() => navigation.navigate('RemoverUsuario')}
           />
-        </View>   
-        
+        </View>  
+
+        <View style={styles.button}>
+          <Button
+            title="VOLTAR"
+            color="darkgreen"
+            onPress={() => navigation.navigate('Inicio')}
+          /> 
+        </View>
 
       </View>
 
@@ -92,14 +74,5 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 15,
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
   },
 });

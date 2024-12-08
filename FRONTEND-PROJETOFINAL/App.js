@@ -11,8 +11,6 @@ import Usuarios from './Usuarios.js';
 import AdicionarUsuario from './AdicionarUsuario.js';
 import RemoverUsuario from './RemoverUsuario.js';
 import VerUsuarios from './VerUsuarios.js';
-import Info from './Info.js';
-import Creditos from './Creditos.js';
 import Emprestados from './Emprestados.js';
 
 const Stack = createStackNavigator();
@@ -28,8 +26,6 @@ export default function App() {
         <Stack.Screen name="DevolverLivro" component={DevolverLivro} />
         <Stack.Screen name="RemoverLivro" component={RemoverLivro} />
         <Stack.Screen name="Usuarios" component={Usuarios} />
-        <Stack.Screen name="Info" component={Info} />
-        <Stack.Screen name="Creditos" component={Creditos} />
         <Stack.Screen name="Emprestados" component={Emprestados} />
         <Stack.Screen name="VerUsuarios" component={VerUsuarios} />
         <Stack.Screen name="AdicionarUsuario" component={AdicionarUsuario} />

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { getBooks, deleteBook, deleteUnit } from './api/Api';
-
-
+import { useNavigation } from '@react-navigation/native';
 
 
 
 
 
 export default function RemoverLivros() {
+  const navigation = useNavigation();
   const [id, setId] = useState('');
   const [books, setBooks] = useState([]);
-
-
+  const [expandedBook, setExpandedBook] = useState(null);
 
 
 
@@ -29,12 +28,18 @@ export default function RemoverLivros() {
       }
     };
 
-
-
-
-
     fetchBooks();
   }, []);
+
+
+
+
+
+
+  const Expand = (bookId) => {
+    setExpandedBook(expandedBook === bookId ? null : bookId); // Alterna a exibição dos detalhes
+  };
+
 
 
 
@@ -46,20 +51,20 @@ export default function RemoverLivros() {
         alert('Por favor, insira um ID de livro válido.');
         return;
       }
-  
+
       await deleteBook(id);
       alert('Livro removido com sucesso!');
       setId('');
-  
 
       const updatedBooks = await getBooks();
       setBooks(updatedBooks);
-  
     } catch (error) {
       console.error('Erro ao remover livro:', error);
       alert('Erro ao remover livro!');
     }
   };
+
+
 
 
 
@@ -70,121 +75,119 @@ export default function RemoverLivros() {
         alert('Por favor, insira um ID de livro válido.');
         return;
       }
-  
+
       await deleteUnit(id);
       alert('Unidade removida com sucesso!');
       setId('');
-  
 
       const updatedBooks = await getBooks();
       setBooks(updatedBooks);
-  
     } catch (error) {
       console.error('Erro ao remover unidade:', error);
       alert('Erro ao remover unidade!');
     }
   };
-  
+
+
+
+
+
 
   return (
-
-
-
-
-
-
-
     <View style={styles.body}>
 
-
-      <View style={styles.menuhorizontal}>
-
-      <Button 
-      title="Início" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Inicio')}
-      />
-
-      <Button 
-      title="Usuarios"
-      color="darkgreen"
-      onPress={() => navigation.navigate('Usuarios')}
-      />
-
-      <Button 
-      title="Informação" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Info')}
-      />
-
-      <Button 
-      title="Créditos" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Creditos')}
-      />
-
-      </View>
-
-
-
-
-
-
-        <View style={styles.menuremover}>
+      <View style={styles.menuremover}>
 
         <Text style={styles.title}>REMOVER LIVRO</Text>
 
-
-
-
-
         <ScrollView>
+
+
           {books.length > 0 ? (
             books.map((book) => (
 
               <View key={book.id} style={styles.bookItem}>
 
-              <Text style={styles.bookText}>
-              {"ID do livro:"}{book.id} {"\n"}
-              {"Titulo do livro:"}  {book.titulo} {"\n"}
-              {"Autor do livro:"} {book.autor} {"\n"}
-              {"Ano do livro:"}  {book.ano} {"\n"}
-              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
-              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para usuários com ID's:"} {book.usuariosEmprestados.join(", ")} {"\n"}
-              </Text>
+
+
+
+                <TouchableOpacity onPress={() => Expand(book.id)}>
+
+                  <Text style={styles.bookButton}>Título do livro: {book.titulo}</Text>
+
+                </TouchableOpacity>
+
+
+
+
+
+                {expandedBook === book.id && (
+                  <View style={styles.detalhes}>
+
+                    <Text style={styles.bookText}>
+                      ID do livro: {book.id}
+                      </Text>
+
+                    <Text style={styles.bookText}>
+                      Título: {book.titulo}
+                      </Text>
+
+                    <Text style={styles.bookText}>
+                      Autor: {book.autor}
+                      </Text>
+
+                    <Text style={styles.bookText}>
+                      Ano: {book.ano}
+                      </Text>
+
+                    <Text style={styles.bookText}>
+                      Quantidade disponível: {book.quantidade}
+                      </Text>
+
+                    <Text style={styles.bookText}>
+                      Quantidade emprestada: {book.quantidadeEmprestada}
+                      </Text>
+
+                    <Text style={styles.bookText}>
+                      Emprestado para usuários com ID's: {book.usuariosEmprestados.join(', ')}
+                    </Text>
+
+                  </View>
+
+                )}
 
               </View>
 
-              ))) : (
-                
-              <Text style={styles.bookText2}>Não há livros para exibir.</Text>
-            )}
-          </ScrollView>
+            ))
+
+          ) : (
+
+            <Text style={styles.bookText2}>Não há livros para exibir.</Text>
+
+          )}
 
 
-
-
-          <TextInput
-            style={styles.input}
-            placeholder="ID do Livro"
-            value={id}
-            onChangeText={setId}
-            keyboardType="numeric"
-          />
+        </ScrollView>
 
 
 
 
 
 
-          <View style={styles.buttonGroup}>
+        <TextInput
+          style={styles.input}
+          placeholder="ID do Livro"
+          value={id}
+          onChangeText={setId}
+          keyboardType="numeric"
+        />
 
+        <View style={styles.buttonGroup}>
           <Button 
           title="Remover Livro" 
           color="red" 
-          onPress={RemoverLivro} 
-          />
+          onPress={RemoverLivro}
+           />
 
           <Button 
           title="Remover Unidade" 
@@ -200,13 +203,18 @@ export default function RemoverLivros() {
 
         </View>
 
-
-
-
-
-        </View>
       </View>
-  );}
+
+    </View>
+
+  );
+
+}
+
+
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -215,23 +223,36 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   menuremover: {
+    height: 500,
     backgroundColor: 'rgb(128, 21, 199)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 10,
   },
   title: {
     color: 'white',
     textAlign: 'center',
     fontSize: 20,
-    marginBottom: 30,
+    marginBottom: 10,
     fontWeight: 'bold',
   },
   bookItem: {
     backgroundColor: 'white',
-    padding: 12,
+    padding: 8,
     marginVertical: 8,
+    borderRadius: 4,
+  },
+  bookButton: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'darkgreen',
+    textAlign: 'center',
+  },
+  detalhes: {
+    marginTop: 8,
+    padding: 8,
+    backgroundColor: 'lightgrey',
     borderRadius: 4,
   },
   bookText: {
@@ -243,22 +264,15 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   input: {
-    height: 40,
+    padding: 5,
     borderColor: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'lightgrey',
     borderWidth: 1,
+    marginTop: 10,
     marginBottom: 10,
     paddingLeft: 8,
     color: 'black',
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
+    borderRadius: 4,
   },
   buttonGroup: {
     gap: 10,

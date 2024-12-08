@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
-import { getBooks, putBook2, seeBooks } from './api/Api';
-
-
-
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { putBook2, seeBooks } from './api/Api';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -12,13 +10,14 @@ export default function DevolverLivro() {
   const [id, setId] = useState('');
   const [usuarioId, setUsuarioId] = useState('');
   const [books, setBooks] = useState([]);
+  const [expandedBook, setExpandedBook] = useState(null);
+  const navigation = useNavigation();
 
 
 
 
 
 
-  
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -32,8 +31,10 @@ export default function DevolverLivro() {
 
 
 
+
     fetchBooks();
   }, []);
+
 
 
 
@@ -46,67 +47,41 @@ export default function DevolverLivro() {
         return;
       }
 
+
       await putBook2(id, usuarioId);
       alert('Livro devolvido com sucesso!');
       setId('');
       setUsuarioId('');
 
-
-
-
-
-
-      const updatedBooks2 = await getBooks();
-      setBooks(updatedBooks2);
-
+      const updatedBooks2 = await seeBooks();
+      
+      const borrowedBooks = updatedBooks2.filter(book => book.quantidadeEmprestada > 0);
+      setBooks(borrowedBooks);
     } catch (error) {
       console.error('Erro ao devolver livro:', error);
       alert('Erro ao devolver livro!');
     }
   };
 
+
+
+
+
+
+
+  const Expand = (bookId) => {
+    setExpandedBook(expandedBook === bookId ? null : bookId);
+  };
+
+
+
+
+
+
+
+
   return (
-
-
-
-
-
-
-
-
     <View style={styles.body}>
-
-      <View style={styles.menuhorizontal}>
-
-      <Button 
-      title="Início" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Inicio')}
-      />
-
-      <Button 
-      title="Usuarios"
-      color="darkgreen"
-      onPress={() => navigation.navigate('Usuarios')}
-      />
-
-      <Button 
-      title="Informação" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Info')}
-      />
-
-      <Button 
-      title="Créditos" 
-      color="darkgreen" 
-      onPress={() => navigation.navigate('Creditos')}
-      />
-
-      </View>
-
-
-
-
 
       <View style={styles.menudevolver}>
 
@@ -116,27 +91,73 @@ export default function DevolverLivro() {
 
 
         <ScrollView>
+
           {books.length > 0 ? (
             books.map((book) => (
 
+
               <View key={book.id} style={styles.bookItem}>
 
-              <Text style={styles.bookText}>
-              {"ID do livro:"}{book.id} {"\n"}
-              {"Titulo do livro:"}  {book.titulo} {"\n"}
-              {"Autor do livro:"} {book.autor} {"\n"}
-              {"Ano do livro:"}  {book.ano} {"\n"}
-              {"Quantidade disponível:"}  {book.quantidade} {"\n"}
-              {"Quantidade emprestada:"}  {book.quantidadeEmprestada} {"\n"}
-              {"Emprestado para o usuario de ID:"}  {book.usuariosEmprestados.join(", ")} {"\n"}
-              </Text>
+
+
+                <TouchableOpacity onPress={() => Expand(book.id)}>
+
+                  <Text style={styles.bookButton}>
+                    Título: {book.titulo}
+                  </Text>
+
+                </TouchableOpacity>
+
+
+
+
+                {expandedBook === book.id && (
+                  <View style={styles.detalhes}>
+
+
+                    <Text style={styles.bookText}>
+                      ID do livro: {book.id}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Título: {book.titulo}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Autor: {book.autor}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Ano: {book.ano}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Quantidade disponível: {book.quantidade}
+                    </Text>
+                      
+                    <Text style={styles.bookText}>
+                      Quantidade emprestada: {book.quantidadeEmprestada}
+                    </Text>
+
+                    <Text style={styles.bookText}>
+                      Emprestado para usuários com ID's: {book.usuariosEmprestados.join(', ')}
+                    </Text>
+
+
+                  </View>
+                )}
+
 
               </View>
             ))
+
           ) : (
+
             <Text style={styles.bookText2}>Não há livros emprestados.</Text>
           )}
+
         </ScrollView>
+
 
 
 
@@ -159,30 +180,16 @@ export default function DevolverLivro() {
           keyboardType="numeric"
         />
 
-
-
         <View style={styles.buttonGroup}>
-
-        <Button 
-        title="Devolver livro" 
-        color="darkgreen" 
-        onPress={Devolver} 
-        />
-
-        <Button
-          title="VOLTAR"
-          color="darkgreen"
-          onPress={() => navigation.navigate('Inicio')}
-        />
-
+          <Button title="Devolver livro" color="darkgreen" onPress={Devolver} />
+          <Button title="VOLTAR" color="darkgreen" onPress={() => navigation.navigate('Inicio')} />
         </View>
-
-
-
       </View>
     </View>
   );
 }
+
+
 
 
 
@@ -199,11 +206,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   menudevolver: {
+    height: 500,
     backgroundColor: 'rgb(128, 21, 199)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
-    marginTop: 80,
+    marginTop: 10,
   },
   title: {
     color: 'white',
@@ -218,8 +226,21 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderRadius: 4,
   },
-  bookText: {
+  bookButton: {
+    height: 15,
     fontSize: 16,
+    fontWeight: 'bold',
+    color: 'darkgreen',
+    textAlign: 'center',
+  },
+  detalhes: {
+    marginTop: 8,
+    padding: 8,
+    backgroundColor: 'lightgrey',
+    borderRadius: 4,
+  },
+  bookText: {
+    fontSize: 14,
     color: 'black',
   },
   bookText2: {
@@ -227,22 +248,15 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   input: {
-    height: 40,
+    padding: 5,
     borderColor: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'lightgrey',
     borderWidth: 1,
+    marginTop: 10,
     marginBottom: 10,
     paddingLeft: 8,
     color: 'black',
-  },
-  menuhorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    height: 50,
-    padding: 10,
-    borderRadius: 10,
+    borderRadius: 4,
   },
   buttonGroup: {
     gap: 10,
