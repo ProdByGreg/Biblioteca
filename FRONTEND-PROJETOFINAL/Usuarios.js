@@ -17,7 +17,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Ver usuários"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('VerUsuarios')}
           />
         </View>
@@ -25,7 +25,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Adicionar usuário"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('AdicionarUsuario')}
           />
         </View>
@@ -33,7 +33,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Remover usuário"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('RemoverUsuario')}
           />
         </View>  
@@ -55,11 +55,11 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: 'black',
     padding: 16,
   },
   menu: {
-    backgroundColor: 'rgb(128, 21, 199)',
+    backgroundColor: 'rgb(0, 0, 128)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,

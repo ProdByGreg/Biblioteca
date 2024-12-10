@@ -181,8 +181,18 @@ export default function DevolverLivro() {
         />
 
         <View style={styles.buttonGroup}>
-          <Button title="Devolver livro" color="darkgreen" onPress={Devolver} />
-          <Button title="VOLTAR" color="darkgreen" onPress={() => navigation.navigate('Inicio')} />
+          <Button 
+          title="Devolver livro" 
+          color="darkgreen" 
+          onPress={Devolver}
+           />
+
+          <Button 
+          title="VOLTAR" 
+          color="black" 
+          onPress={() => navigation.navigate('Inicio')}
+           />
+
         </View>
       </View>
     </View>
@@ -202,12 +212,12 @@ export default function DevolverLivro() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: 'black',
     padding: 16,
   },
   menudevolver: {
     height: 500,
-    backgroundColor: 'rgb(128, 21, 199)',
+    backgroundColor: 'rgb(0, 0, 128)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
@@ -230,7 +240,7 @@ const styles = StyleSheet.create({
     height: 15,
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'darkgreen',
+    color: 'black',
     textAlign: 'center',
   },
   detalhes: {
@@ -249,8 +259,8 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 5,
-    borderColor: 'white',
-    backgroundColor: 'lightgrey',
+    borderColor: 'black',
+    backgroundColor: 'white',
     borderWidth: 1,
     marginTop: 10,
     marginBottom: 10,

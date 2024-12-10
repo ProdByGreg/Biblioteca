@@ -2,21 +2,27 @@ import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+
+
 export default function Inicio() {
   const navigation = useNavigation("");
+
+
+
+
 
   return (
     <View style={styles.body}>
 
 
-      <View style={styles.menu}>
 
+      <View style={styles.menu}>
         <Text style={styles.title}>GERENCIADOR DE LIVROS</Text>
 
         <View style={styles.button}>
           <Button
             title="Ver livros"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('VerLivros')}
           />
         </View>
@@ -24,7 +30,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Adicionar livro"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('AdicionarLivro')}
           />
         </View>
@@ -32,7 +38,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Emprestar Livro"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('EmprestarLivro')}
           />
         </View>
@@ -40,7 +46,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Devolver Livro"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('DevolverLivro')}
           />
         </View>
@@ -48,7 +54,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Ver emprestados"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('Emprestados')}
           />
         </View>
@@ -56,7 +62,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Remover Livro"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('RemoverLivro')}
           />
         </View>
@@ -64,7 +70,7 @@ export default function Inicio() {
         <View style={styles.button}>
           <Button
             title="Usuários"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('Usuarios')}
           />
         </View>
@@ -73,26 +79,31 @@ export default function Inicio() {
       </View>
 
     </View>
-  );
-}
+  );}
 
+
+
+
+
+
+  
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: 'rgb(0, 0, 128)',
     padding: 16,
   },
   menu: {
-    backgroundColor: 'rgb(128, 21, 199)',
+    backgroundColor: 'white',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
     marginTop: 40,
   },
   title: {
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 25,
     marginBottom: 30,
     fontWeight: 'bold',
   },

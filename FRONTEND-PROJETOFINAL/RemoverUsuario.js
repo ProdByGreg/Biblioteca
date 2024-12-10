@@ -190,12 +190,12 @@ export default function RemoverUsuarios() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: 'rgb(0, 0, 128)',
     padding: 16,
   },
   menuremover: {
     height: 500,
-    backgroundColor: 'rgb(128, 21, 199)',
+    backgroundColor: 'black',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   userItem: {
-    backgroundColor: 'white',
+    backgroundColor: 'lightgrey',
     padding: 8,
     marginVertical: 8,
     borderRadius: 4,
@@ -217,13 +217,13 @@ const styles = StyleSheet.create({
   userButton: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'darkgreen',
+    color: 'black',
     textAlign: 'center',
   },
   detalhes: {
     marginTop: 8,
     padding: 8,
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'white',
     borderRadius: 4,
   },
   userText: {
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   input: {
     padding: 5,
     borderColor: 'white',
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'white',
     borderWidth: 1,
     marginTop: 10,
     marginBottom: 10,

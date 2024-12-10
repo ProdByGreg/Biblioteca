@@ -132,7 +132,7 @@ export default function VerLivros() {
 
           <Button
             title="VOLTAR"
-            color="darkgreen"
+            color="black"
             onPress={() => navigation.navigate('Inicio')}
           />
 
@@ -151,12 +151,12 @@ export default function VerLivros() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: 'black',
     padding: 16,
   },
   menuview: {
     height: 500,
-    backgroundColor: 'rgb(128, 21, 199)',
+    backgroundColor: 'rgb(0, 0, 128)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     height: 15,
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'darkgreen',
+    color: 'black',
     textAlign: 'center',
   },
   detalhes: {

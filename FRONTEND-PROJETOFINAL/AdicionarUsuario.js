@@ -75,7 +75,7 @@ export default function Usuarios() {
 
         <Button
           title="VOLTAR"
-          color="darkgreen"
+          color="black"
           onPress={() => navigation.navigate('Usuarios')}
         />
 
@@ -102,11 +102,11 @@ export default function Usuarios() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: 'black',
     padding: 16,
   },
   menuadd: {
-    backgroundColor: 'rgb(128, 21, 199)',
+    backgroundColor: 'rgb(0, 0, 128)',
     padding: 30,
     marginVertical: 20,
     borderRadius: 8,
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 30,
-    backgroundColor: 'lightgrey',
-    borderColor: 'white',
+    backgroundColor: 'white',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 12,
