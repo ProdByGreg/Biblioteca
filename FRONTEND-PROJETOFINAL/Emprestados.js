@@ -40,7 +40,7 @@ export default function VerLivros() {
 
 
 
-  const toggleDetails = (bookId) => {
+  const Expand = (bookId) => {
     setExpandedBook(expandedBook === bookId ? null : bookId);
   };
 
@@ -67,7 +67,7 @@ export default function VerLivros() {
               <View key={book.id} style={styles.bookItem}>
 
 
-                <TouchableOpacity onPress={() => toggleDetails(book.id)}>
+                <TouchableOpacity onPress={() => Expand(book.id)}>
 
                   <Text style={styles.bookButton}>
                     Título do livro: {book.titulo}

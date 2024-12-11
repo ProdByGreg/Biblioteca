@@ -3,12 +3,24 @@ import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import {postUser } from './api/Api';
 import { useNavigation } from '@react-navigation/native';
 
+
+
+
+
+
+
 export default function Usuarios() {
   const navigation = useNavigation("");
-
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
   const [telefone, setTelefone] = useState('');
+
+
+
+
+
+
+  
 
   const Salvar = async () => {
     if (!nome ||!telefone || !idade) {
@@ -22,6 +34,11 @@ export default function Usuarios() {
       Idade: parseInt(idade),
     };
 
+
+
+
+
+
     try {
       await postUser(usuario, 'Usuarios');
       alert('Usuário adicionado com sucesso!');
@@ -34,11 +51,21 @@ export default function Usuarios() {
     }
   };
 
+
+
+
+
+
+
   return (
     <View style={styles.body}>
 
 
+
+
       <View style={styles.menuadd}>
+
+
 
         <Text style={styles.title}>ADICIONAR NOVO USUÁRIO</Text>
 

@@ -189,7 +189,7 @@ namespace BookManagerAPI.Controllers
 
             if (livro.QuantidadeEmprestada == 0)
             {
-                return BadRequest("Todas as unidades do livro já foram emprestadas.");
+                return BadRequest("Não há livros emprestados.");
             }
 
             livro.Quantidade++;

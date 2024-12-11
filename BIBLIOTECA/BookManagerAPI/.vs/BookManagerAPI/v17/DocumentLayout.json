@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:controllers\\livroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\aluno\\desktop\\biblioteca\\biblioteca\\bookmanagerapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\aluno\\desktop\\biblioteca\\biblioteca\\bookmanagerapi\\models\\modellivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modellivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\aluno\\desktop\\biblioteca\\biblioteca\\bookmanagerapi\\models\\modelusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modelusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\aluno\\desktop\\biblioteca\\biblioteca\\bookmanagerapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\aluno\\desktop\\biblioteca\\biblioteca\\bookmanagerapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|c:\\users\\aluno\\desktop\\biblioteca\\biblioteca\\bookmanagerapi\\models\\modellivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52E3E831-207C-4D3A-BC28-9035D4C3B603}|BookManagerAPI.csproj|solutionrelative:models\\modellivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,14 +40,14 @@
               "RelativeDocumentMoniker": "Controllers\\LivrosController.cs",
               "ToolTip": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Controllers\\LivrosController.cs",
               "RelativeToolTip": "Controllers\\LivrosController.cs",
-              "ViewState": "AQIAAIkAAAAAAAAAAAAgwAcAAAAAAAAA",
+              "ViewState": "AQIAAOsAAAAAAAAAAAAkwMsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-30T00:31:12.939Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -55,25 +55,24 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T21:29:33.345Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T21:29:33.345Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "UsuariosController.cs",
               "DocumentMoniker": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Controllers\\UsuariosController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
               "ToolTip": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "Controllers\\UsuariosController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAfAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAwAEAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-05T19:51:12.993Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ModelLivro.cs",
               "DocumentMoniker": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelLivro.cs",
               "RelativeDocumentMoniker": "Models\\ModelLivro.cs",
@@ -81,18 +80,17 @@
               "RelativeToolTip": "Models\\ModelLivro.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T00:31:14.329Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T00:31:14.329Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ModelUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelUsuario.cs",
               "RelativeDocumentMoniker": "Models\\ModelUsuario.cs",
               "ToolTip": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BIBLIOTECA\\BookManagerAPI\\Models\\ModelUsuario.cs",
               "RelativeToolTip": "Models\\ModelUsuario.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAEAAAA",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAcwBIAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-05T19:49:48.479Z",
               "EditorCaption": ""
